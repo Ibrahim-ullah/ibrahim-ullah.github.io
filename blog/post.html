@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post - Dr. Alex Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header>
+    <nav class="container">
+      <div class="logo"><a href="../index.html" style="color: inherit;">Home</a></div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+        <li><a href="../publications/index.html">Publications</a></li>
+        <li><a href="../projects/index.html">Projects</a></li>
+        <li><a href="mailto:contact@example.com">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Blog Post -->
+  <div class="container">
+    <div style="max-width: 800px; margin: 3rem auto;">
+      <a href="index.html" style="font-size: 0.9rem;">← Back to Blog</a>
+      
+      <div class="post-header" id="postHeader">
+        <!-- Post header will be inserted here -->
+      </div>
+
+      <div class="post-content" id="postContent">
+        <!-- Post content will be inserted here -->
+      </div>
+
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+        <a href="index.html" style="font-weight: 600;">← Back to All Posts</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© 2024 Academic Portfolio. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../projects/index.html">Projects</a></li>
+          <li><a href="mailto:contact@example.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const blogPosts = {
+      'post-001': {
+        title: 'Dataview templates to find information in Obsidian',
+        date: '2024-02-10',
+        author: 'Prof. David Martinez',
+        tags: ['Productivity'],
+        content: `
+		
+        
+        `
+      },
+    };
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderPost() {
+      const postId = getQueryParam('id');
+      const post = blogPosts[postId];
+
+      if (!post) {
+        document.getElementById('postHeader').innerHTML = '<h1>Post not found</h1>';
+        return;
+      }
+
+      const dateStr = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      document.getElementById('postHeader').innerHTML = `
+        <h1 class="post-title">${post.title}</h1>
+        <div class="post-meta">
+          <span>${dateStr}</span>
+          <span>${post.author}</span>
+        </div>
+        <div class="blog-tags">
+          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+      `;
+
+      document.getElementById('postContent').innerHTML = post.content;
+    }
+
+    renderPost();
+  </script>
+</body>
+</html>

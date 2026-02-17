@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications - Dr. Alex Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header>
+    <nav class="container">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../publications/index.html" class="active">Publications</a></li>
+        <li><a href="../projects/index.html">Projects</a></li>
+        <li><a href="mailto:contact@example.com">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Publications Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Publications</h1>
+      <p>A comprehensive collection of my research papers published in top-tier conferences and journals</p>
+    </div>
+  </section>
+
+  <!-- Publications Content -->
+  <div class="container">
+    <div class="blog-container">
+      <!-- Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Filter by Year</div>
+          <button class="filter-button" onclick="filterByYear('')">All Years</button>
+          <button class="filter-button" onclick="filterByYear('2021')">2021</button>
+          <button class="filter-button" onclick="filterByYear('2020')">2020</button>
+		  <button class="filter-button" onclick="filterByYear('2019')">2019</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Papers by Year</div>
+          <div class="topic-item">
+            <span>2021</span>
+            <span class="topic-count" id="count-2021">5</span>
+          </div>
+          <div class="topic-item">
+            <span>2020</span>
+            <span class="topic-count" id="count-2020">2</span>
+          </div>
+          <div class="topic-item">
+            <span>2019</span>
+            <span class="topic-count" id="count-2019">2</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Sort</div>
+          <button class="filter-button" onclick="sortPublications('newest')">Newest First</button>
+          <button class="filter-button" onclick="sortPublications('oldest')">Oldest First</button>
+        </div>
+      </aside>
+
+      <!-- Publications List -->
+      <main>
+        <div class="blog-posts" id="publicationsList">
+          <!-- Publications will be inserted here by JavaScript -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© 2024 Academic Portfolio. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../publications/index.html">Publications</a></li>
+          <li><a href="../projects/index.html">Projects</a></li>
+          <li><a href="mailto:contact@example.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const publications = [
+      {
+        id: 'pub-001',
+        title: 'High-gain and ultrawide-band graphene patch antenna with photonic crystal covering 96.48% of the terahertz band',
+        authors: 'Md Abdul Kaium Khan, Md Ibrahim Ullah, Mohammad Abdul Alim',
+        conference: 'Optik (Elsvier)',
+        year: 2021,
+        abstract: 'With the recent advancement in high-frequency microwave devices and applications, graphene-based antennas are showing real potential due to the unique properties of graphene material and its ability to operate at terahertz communication band (0.1 THz–10 THz). Herein, a very high-gain and ultrawide-band graphene-based patch antenna is proposed with the application of photonic crystal and dielectric grating',
+        tags: ['Terahertz Band', 'Graphene antenna', 'Phtonic Crystal'],
+        links: {
+          paper: 'https://doi.org/10.1016/j.ijleo.2020.166056',
+        }
+      },
+      {
+        id: 'pub-002',
+        title: 'Convolutional Neural Network Based Smart System to aid an Epileptic Patient',
+        authors: 'Md Mehedi Hasan, Md Ibrahim Ullah, He Feng, Md Tanvir Hasan, Bipro Gain, Shahrukh Khan',
+        conference: 'IEEE 3rd International Conference on Applied Machine Learning (ICAML)',
+        year: 2021,
+        abstract: 'Epilepsy is a form of neurological disorder which results from the immediate change in neurological signal. Drug-resistant epileptic patients need to be monitored all the time. To solve this problem, in this paper, we proposed an Internet of things (IoT) based system which notifies the relatives and doctor that the patient is going through an epileptic event',
+        tags: ['Convolutional Neural Network (CNN)', 'Epilepsy', 'Internet of things (IoT)'],
+        links: {
+          paper: 'https://doi.org/10.1109/ICAML54311.2021.00087',
+        }
+      },
+      {
+        id: 'pub-003',
+        title: 'Timing Analysis for Optimal Points in Credit-Based Shaper of Time Sensitive Network',
+        authors: 'Md Mehedi Hasan, He Feng, Shahrukh Khan, Md Ibrahim Ullah, Md Tanvir Hasan, Bipro Gain',
+        conference: 'IEEE 6th International Conference on Signal and Image Processing (ICSIP)',
+        year: 2021,
+        abstract: 'TSN or Time-Sensitive Network is an aggregation of standards that can include the Ethernet extension to support the real-time application while preserving the safety-critical distribution with the hardware. To improve real-time guarantees establishes multiple shaping such as Credit-Based Shaping (CBS), Asynchronous Traffic Shaping (ATS), Burst Limiting Shaping (BLS) and scheduling processes like Time Aware Shaping (TAS) and various traffic are incorporated.',
+        tags: ['Time Sensitive Analysis', 'Credit Based Shaping'],
+        links: {
+          paper: 'https://doi.org/10.1109/ICSIP52628.2021.9688723',
+        }
+      },
+      {
+        id: 'pub-004',
+        title: 'Improve service curve using non-overlapped gate in time sensitive network switch',
+        authors: 'Md Mehedi Hasan, He Feng, Shahrukh Khan, Md Ibrahim Ullah, Md Tanvir Hasan, Bipro Gain',
+        conference: 'IEEE 21st International Conference on Communication Technology (ICCT)',
+        year: 2021,
+        abstract: 'When a Time-Sensitive Network, comes to networking, TSN is an assemblage of standards that may incorporate the Ethernet extension to enable real-time applications while maintaining the safety-critical distribution with the hardware and software.',
+        tags: ['Time Sensitive Network'],
+        links: {
+          paper: 'https://doi.org/10.1109/ICCT52962.2021.9657974',
+        }
+      },
+      {
+        id: 'pub-005',
+        title: 'Improved and Comparative End to End Delay Analysis in CBS and TAS using Data Compression for Time Sensitive Network',
+        authors: 'Alex Chen, Kevin Thompson',
+        conference: '3rd International Conference on Applied Machine Learning (ICAML)',
+        year: 2021,
+        abstract: 'This work introduces a novel training procedure that significantly improves neural network robustness to adversarial perturbations.',
+        tags: ['Time Sensitive Network', 'End to End Delay Analysis'],
+        links: {
+          paper: 'https://doi.org/10.1109/ICAML54311.2021.00049',
+        }
+      },
+      {
+        id: 'pub-006',
+        title: 'High-Performance Graphene Patch Antenna with Superstrate Cover for Terahertz Band Application',
+        authors: 'Md. Abdul Kaium Khan, Md. Ibrahim Ullah, Rifat Kabir & Mohammad Abdul Alim ',
+        conference: 'Plasmonics (Springer)',
+        year: 2020,
+        abstract: 'Graphene-based patch antennas are rapidly gaining interests in communication technologies for high-speed data transmission due to the exciting properties of graphene material. Herein, we designed a high-performance circular patch antenna for terahertz band application with graphene as the radiating patch.',
+        tags: ['Terahertz Band', 'Superstate', 'Graphene Antenna'],
+        links: {
+          paper: 'https://doi.org/10.1007/s11468-020-01200-z',
+        }
+      },
+      {
+        id: 'pub-007',
+        title: 'Lung nodule Detection and Classification using Deep Neural Network',
+        authors: 'Md Ibrahim Ullah, Saumitra Kumar Kuri',
+        conference: 'IEEE Region 10 Symposium (TENSYMP)',
+        year: 2020,
+        abstract: 'The nodule detection part, the CT images are processed through Adaptive Histogram Equalization (AHE), thresholding, and edge detection. Gray Level Co-occurrence Matrix (GLCM) is used to extract features that is the part of the classifier. Feature such as Energy, Entropy, Correlation, Homogeneity, Dissimilarity, Contrast are extracted. A dataset is created tabulating the values of the features. This dataset is used to train the Deep Neural Network (DNN) model.',
+        tags: ['Deep Neural Network (DNN)', 'Epilepsy', 'AutoML'],
+        links: {
+          paper: 'https://doi.org/10.1109/TENSYMP50017.2020.9230793',
+        }
+      },
+      {
+        id: 'pub-008',
+        title: 'High performance 5g microstrip dipole antennas for 39ghz band',
+        authors: 'Md Ibrahim Ullah, Md Abdul Kaium Khan, Rifat Kabir, Mohammad Abdul Alim',
+        conference: 'IEEE International Conference on Signal Processing, Information, Communication & Systems (SPICSCON)',
+        year: 2019,
+        abstract: 'In this paper, three microstrip dipole antennas are presented for future 5G communication Band. Microstrip dipoles are designed by using Copper, Gold, and Graphene as strip material. The three antennas are analyzed and compared to choose the effective material for 5G dipole antennas.',
+        tags: ['Dipole Antenna','5G'],
+        links: {
+          paper: 'https://doi.org/10.1109/SPICSCON48833.2019.9065160',
+        }
+      },
+      {
+        id: 'pub-009',
+        title: 'Ultra High Efficient 2x1 Graphene Patch Antenna Arrays for Single and Dual Band Operation',
+        authors: 'Md Abdul Kaium Khan, Md Ibrahim Ullah, Towqir Ahmed Shaem, Rifat Kabir, Mohammad Abdul Alim',
+        conference: '1st International Conference on Advances in Science, Engineering and Robotics Technology (ICASERT)',
+        year: 2019,
+        abstract: 'Graphene has opened the floodgate for a plethora of new applications in the field of communication due to its outstanding electrical and optical properties. In this paper, three types of Graphene antenna arrays, i.e. rectangular, circular and triangular are designed to operate around 3THz on a silicon (∈r = 11.9) substrate.',
+        tags: ['Antenna Arrays', 'Patch Antenna'],
+        links: {
+          paper: 'https://doi.org/10.1109/ICASERT.2019.8934472',
+		}
+	  },
+    ];
+
+    let currentYear = '';
+    let currentSort = 'newest';
+
+    function renderPublications() {
+      let filtered = publications;
+
+      // Apply year filter
+      if (currentYear) {
+        filtered = filtered.filter(pub => pub.year === parseInt(currentYear));
+      }
+
+      // Apply sort
+      filtered.sort((a, b) => {
+        return currentSort === 'newest' ? b.year - a.year : a.year - b.year;
+      });
+
+      // Render
+      const container = document.getElementById('publicationsList');
+      container.innerHTML = filtered.map(pub => `
+        <article class="blog-post">
+          <div class="blog-date">${pub.year}</div>
+          <h2>${pub.title}</h2>
+          <p class="blog-excerpt"><strong>${pub.authors}</strong></p>
+          <p class="blog-excerpt"><em>${pub.conference} ${pub.year}</em></p>
+          <p class="blog-excerpt">${pub.abstract}</p>
+          <div class="blog-tags">
+            ${pub.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <div style="margin-top: 1rem; display: flex; gap: 1.5rem;">
+            ${pub.links.paper ? `<a href="${pub.links.paper}" target="_blank" style="font-weight: 600; color: var(--accent-color);">Paper ↗</a>` : ''}
+            ${pub.links.arxiv ? `<a href="${pub.links.arxiv}" target="_blank" style="font-weight: 600; color: var(--accent-color);">arXiv ↗</a>` : ''}
+            ${pub.links.code ? `<a href="${pub.links.code}" target="_blank" style="font-weight: 600; color: var(--accent-color);">Code ↗</a>` : ''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterByYear(year) {
+      currentYear = year;
+      renderPublications();
+    }
+
+    function sortPublications(order) {
+      currentSort = order;
+      renderPublications();
+    }
+
+    // Initial render
+    renderPublications();
+  </script>
+</body>
+</html>

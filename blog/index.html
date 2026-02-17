@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Md. Ibrahim Ullah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header>
+    <nav class="container">
+      <div class="logo">Home</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+        <li><a href="../publications/index.html">Publications</a></li>
+        <li><a href="../projects/index.html">Projects</a></li>
+        <li><a href="mailto:contact@example.com">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Blog Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Blogs on Simulation Softwares, Maths and Productivity</p>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <div class="container">
+    <div class="blog-container">
+      <!-- Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Filters</div>
+          <button class="filter-button" onclick="filterByTag('')">All Posts</button>
+          <button class="filter-button" onclick="filterByTag('Productivity')">Productivity</button>
+          <button class="filter-button" onclick="filterByTag('ADS')">ADS</button>
+          <button class="filter-button" onclick="filterByTag('MATLAB')">MATLAB</button>
+		  <!--
+          <button class="filter-button" onclick="filterByTag('Computer Vision')">Computer Vision</button>
+          <button class="filter-button" onclick="filterByTag('Ethics')">Ethics</button>
+          <button class="filter-button" onclick="filterByTag('Data Science')">Data Science</button>
+		   -->
+
+        <div class="divider"></div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Topics</div>
+          <div class="topic-item">
+            <span>Productivity</span>
+            <span class="topic-count">1</span>
+          </div>
+          <div class="topic-item">
+            <span>ADS</span>
+            <span class="topic-count">0</span>
+          </div>
+          <div class="topic-item">
+            <span>MATLAB</span>
+            <span class="topic-count">0</span>
+          </div>
+		   <!--
+          <div class="topic-item">
+            <span>Computer Vision</span>
+            <span class="topic-count">2</span>
+          </div>
+          <div class="topic-item">
+            <span>Ethics</span>
+            <span class="topic-count">1</span>
+          </div>
+          <div class="topic-item">
+            <span>Data Science</span>
+            <span class="topic-count">1</span>
+          </div>
+		  	 -->
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-title">Sort</div>
+          <button class="filter-button" onclick="sortPosts('newest')">Newest First</button>
+          <button class="filter-button" onclick="sortPosts('oldest')">Oldest First</button>
+        </div>
+      </aside>
+
+      <!-- Blog Posts -->
+      <main>
+        <div class="blog-posts" id="blogPosts">
+          <!-- Posts will be inserted here by JavaScript -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© 2024 Academic Portfolio. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../projects/index.html">Projects</a></li>
+          <li><a href="mailto:contact@example.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const blogPosts = [
+      {
+        id: 'post-001',
+        title: 'Dataview templates to find information in Obsidian',
+        date: '2024-02-10',
+        author: 'Prof. David Martinez',
+        excerpt: 'Using dataview can be used to find markdown files in Obsidian',
+        tags: ['Productivity'],
+        content: 'Dataview in Obsidian is a powerful plugin that allows to create dynamic views of notes...'
+      },
+	  
+    ];
+
+    let currentFilter = '';
+    let currentSort = 'newest';
+
+    function renderPosts() {
+      let filtered = blogPosts;
+
+      // Apply filter
+      if (currentFilter) {
+        filtered = filtered.filter(post => post.tags.includes(currentFilter));
+      }
+
+      // Apply sort
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return currentSort === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+
+      // Render
+      const container = document.getElementById('blogPosts');
+      container.innerHTML = filtered.map(post => `
+        <article class="blog-post">
+          <div class="blog-date">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+          <h2><a href="post.html?id=${post.id}">${post.title}</a></h2>
+          <p class="blog-excerpt">${post.excerpt}</p>
+          <div class="blog-tags">
+            ${post.tags.map(tag => `<button class="blog-tag" onclick="filterByTag('${tag}')">${tag}</button>`).join('')}
+          </div>
+          <a href="post.html?id=${post.id}" class="read-more">Read more →</a>
+        </article>
+      `).join('');
+    }
+
+    function filterByTag(tag) {
+      currentFilter = tag;
+      renderPosts();
+    }
+
+    function sortPosts(order) {
+      currentSort = order;
+      renderPosts();
+    }
+
+    // Initial render
+    renderPosts();
+  </script>
+</body>
+</html>

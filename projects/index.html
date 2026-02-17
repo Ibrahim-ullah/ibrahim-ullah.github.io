@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Dr. Alex Chen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header>
+    <nav class="container">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../publications/index.html">Publications</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="mailto:contact@example.com">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Projects Header -->
+  <section class="hero">
+    <div class="container">
+      <h1>Projects & Repositories</h1>
+      <p>A collection of projects, experiments, and technical explorations ranging from machine learning and LLM-based work to electromagnetic, photonic and electronic circuit simulations. This space also links to GitHub repositories containing smaller tasks, prototypes, and learning-focused implementations, with plans to expand into other domains over time..</p>
+    </div>
+  </section>
+
+  <!-- Projects Content -->
+  <div class="container">
+    <section class="projects-container">
+      <!-- Filter Tags -->
+      <div class="filter-tags">
+        <button class="filter-button" onclick="filterByTag('')">All Projects (6)</button>
+        <button class="filter-button" onclick="filterByTag('Deep Learning')">Deep Learning (3)</button>
+        <button class="filter-button" onclick="filterByTag('NLP')">NLP (1)</button>
+        <button class="filter-button" onclick="filterByTag('Medical AI')">Medical AI (1)</button>
+        <button class="filter-button" onclick="filterByTag('Computer Vision')">Computer Vision (1)</button>
+        <button class="filter-button" onclick="filterByTag('Reinforcement Learning')">Reinforcement Learning (1)</button>
+        <button class="filter-button" onclick="filterByTag('Ethics')">Ethics (1)</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projectsContainer">
+        <!-- Projects will be inserted here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2>Interested in Collaborating?</h2>
+      <p>I'm always open to discussing new research ideas, collaborations, and opportunities. Feel free to reach out if you'd like to work together on an interesting project.</p>
+      <a href="mailto:contact@example.com" class="cta-button">Get in Touch</a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">© 2024 Academic Portfolio. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="index.html">Projects</a></li>
+          <li><a href="mailto:contact@example.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const projects = [
+      {
+        id: 'proj-001',
+        title: 'Computational Electromagnetics and Applications',
+        description: 'This repositories contain MATLAB code from  the Computational Electromagnetics & Applications course provided by IIT Bombay. The course discusses  modelling of electromagnetic systems and builds a strong foundation in the underlying physics. In this course, in addition to important modelling techniques are for electromagnetic applications are elaborately discussed.',
+		longDescription:'',
+        technologies: ['MATLAB'],
+        status: 'Active',
+        year: 2024,
+        tags: ['Computational Electromagnetics'],
+        links: {
+          github: 'https://github.com/Ibrahim-ullah/Computational-Electromagnetics-and-Applications',
+        }
+      },
+      {
+        id: 'proj-002',
+        title: 'Lumerical',
+        description: 'Implementation of photonic devcies and structures using Lumerical FDTD and MODE along with photonic integrated circuit using INTERCONNECT has been collected in this repository',
+        longDescription: '',
+        technologies: ['TensorFlow', 'OpenCV', 'NumPy', 'Python'],
+        status: 'Active',
+        year: 2023,
+        tags: ['Medical AI', 'Computer Vision', 'Deep Learning'],
+        links: {
+          github: 'https://github.com/Ibrahim-ullah/Lumerical',
+        }
+      },
+    ];
+
+    let currentFilter = '';
+
+    function renderProjects() {
+      let filtered = projects;
+
+      if (currentFilter) {
+        filtered = filtered.filter(proj => proj.tags.includes(currentFilter));
+      }
+
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = filtered.map(proj => `
+        <div class="project-card">
+          <div class="project-header">
+            <h2>${proj.title}</h2>
+            <span class="project-status ${proj.status === 'Completed' ? 'completed' : ''}">${proj.status}</span>
+          </div>
+          <p class="project-description">${proj.description}</p>
+          <p class="project-long-description">${proj.longDescription}</p>
+
+          <div class="project-section">
+            <div class="project-section-title">Technologies</div>
+            <div class="tech-list">
+              ${proj.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="project-section">
+            <div class="project-section-title">Tags</div>
+            <div class="project-tags">
+              ${proj.tags.map(tag => `<button class="project-tag" onclick="filterByTag('${tag}')">${tag}</button>`).join('')}
+            </div>
+          </div>
+
+          <div style="padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem;">
+            <span style="font-size: 0.9rem; color: var(--text-muted);">Year: ${proj.year}</span>
+          </div>
+
+          <div class="project-links">
+            ${proj.links.github ? `<a href="${proj.links.github}" target="_blank" class="project-link">GitHub ↗</a>` : ''}
+            ${proj.links.demo ? `<a href="${proj.links.demo}" target="_blank" class="project-link">Demo ↗</a>` : ''}
+            ${proj.links.paper ? `<a href="${proj.links.paper}" target="_blank" class="project-link">Paper ↗</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterByTag(tag) {
+      currentFilter = tag;
+      renderProjects();
+    }
+
+    // Initial render
+    renderProjects();
+  </script>
+</body>
+</html>
